@@ -1,0 +1,74 @@
+.check-status-container {
+    height: 98%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+main{
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    /* margin: 0 auto; */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.go-button {
+    background-color: #A05B56;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.status-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.status-check label {
+    margin-right: 10px;
+}
+
+.status-check select,
+.status-check input,
+.status-check button {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #5B3629;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    color: white;
+    background-color: #A05B56;
+    border: 1px solid #5B3629;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}

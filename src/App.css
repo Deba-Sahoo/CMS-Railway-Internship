@@ -1,0 +1,16 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: #FDEDEA center center fixed;
+}
+.page-container{
+  position: absolute;
+  top: 52px;
+  left: 290px;
+  height: calc(100% - 52px);
+  width: calc(100% - 290px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
