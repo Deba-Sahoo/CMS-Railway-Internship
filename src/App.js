@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import RaiseComplaint from "./pages/RaiseComplaint";
