@@ -16,7 +16,7 @@ const ChangePassword = () => {
     <div className="change-password-container">
       <div className="change-password-content">
         <h2>Change Password</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="change-password-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Current Password</label>
             <input

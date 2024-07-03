@@ -7,15 +7,19 @@ const Header = ({ user, setUser }) => {
   const location = useLocation();
   const [dropdown, setDropdown] = useState(false);
 
+
   const handleDropdown = () => {
-    if (user) {
-      setDropdown(!dropdown);
-    }
+    setDropdown(!dropdown);
   };
+
   const handleLogout = () => {
-    setUser(null);
-    navigate("/");
     setDropdown(false);
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      setUser(null);
+      console.log("User logged out");
+      navigate("/");
+    }
   };
 
   return (
@@ -28,7 +32,10 @@ const Header = ({ user, setUser }) => {
           <button
             className="login-button"
             onClick={() => {
-              location.pathname === "/" ? navigate("/login") : navigate("/");
+              if (location.pathname === "/") {
+                navigate("/login");
+                setUser(user);
+              } else navigate("/");
             }}
           >
             <span className="login-span">LOGIN</span>
@@ -40,7 +47,7 @@ const Header = ({ user, setUser }) => {
             {dropdown && (
               <div className="dropdown">
                 <ul>
-                  <li>
+                  {/* <li>
                     <button onClick={() => navigate("/profile")}>
                       Profile
                     </button>
@@ -49,7 +56,7 @@ const Header = ({ user, setUser }) => {
                     <button onClick={() => navigate("/change-password")}>
                       Change Password
                     </button>
-                  </li>
+                  </li> */}
                   <li>
                     <button onClick={handleLogout}>Logout</button>
                   </li>

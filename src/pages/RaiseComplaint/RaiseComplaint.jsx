@@ -7,16 +7,16 @@ const RaiseComplaint = () => {
       <div className="main-content">
         <h1>RAISE NEW COMPLAINT</h1>
         <form className="complaint-form">
-          <div className="input-group">
+          <div className="raise-complaint-input-group">
             <label htmlFor="employeeNo">Enter Employee No.</label>
             <input type="text" id="employeeNo" name="employeeNo" />
           </div>
-          <div className="input-group">
+          <div className="raise-complaint-input-group">
             <label htmlFor="employeeName">Enter Employee Name</label>
             <input type="text" id="employeeName" name="employeeName" />
           </div>
           <div className="dropdown-group">
-            <div className="input-group">
+            <div className="raise-complaint-input-group">
               <label htmlFor="department">Department</label>
               <select id="department" name="department">
                 <option value="personnel">Personnel</option>
@@ -24,7 +24,7 @@ const RaiseComplaint = () => {
                 <option value="optg">OPTG</option>
               </select>
             </div>
-            <div className="input-group">
+            <div className="raise-complaint-input-group">
               <label htmlFor="website">Website</label>
               <select id="website" name="website">
                 <option value="e-office">e-Office</option>
@@ -32,7 +32,7 @@ const RaiseComplaint = () => {
                 <option value="east-coast-website">East Coast Website</option>
               </select>
             </div>
-            <div className="input-group">
+            <div className="raise-complaint-input-group">
               <label htmlFor="module">Module</label>
               <select id="module" name="module">
                 <option value="payroll">Payroll</option>
@@ -40,7 +40,7 @@ const RaiseComplaint = () => {
                 <option value="pension">Pension</option>
               </select>
             </div>
-            <div className="input-group">
+            <div className="raise-complaint-input-group">
               <label htmlFor="division">Division</label>
               <select id="division" name="division">
                 <option value="kur">KUR</option>
@@ -49,15 +49,15 @@ const RaiseComplaint = () => {
               </select>
             </div>
           </div>
-          <div className="input-group">
+          <div className="raise-complaint-input-group">
             <label htmlFor="subject">Subject</label>
             <input type="text" id="subject" name="subject" />
           </div>
-          <div className="input-group">
+          <div className="raise-complaint-input-group">
             <label htmlFor="description">Description</label>
             <textarea id="description" name="description"></textarea>
           </div>
-          <div className="input-group">
+          <div className="raise-complaint-input-group">
             <label htmlFor="reference">Upload Reference Documents</label>
             <input type="file" name="reference" id="reference"/>
           </div>
