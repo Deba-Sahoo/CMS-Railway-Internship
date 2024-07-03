@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import './Navbar.css'
+import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -14,30 +14,79 @@ const Navbar = () => {
     navigate("/check-complaint-status");
   };
 
+  const handleAddUserClick = () => {
+    navigate("/add-user");
+  };
+
+  const handleManageUsersClick = () => {
+    navigate("/manage-users");
+  };
+
+  const handleAllComplaintsClick = () => {
+    navigate("/all-complaints");
+  };
+
   return (
     <aside className="sidebar">
       <nav>
         <ul>
-          <li>
-            <button
-              className={`button nav-button ${
-                location.pathname === "/raise-complaint" ? "active" : ""
-              }`}
-              onClick={handleRaiseComplaintClick}
-            >
-              Raise Complaint
-            </button>
-          </li>
-          <li>
-            <button
-              className={`button nav-button ${
-                location.pathname === "/check-complaint-status" ? "active" : ""
-              }`}
-              onClick={handleCheckComplaintStatusClick}
-            >
-              Check Complaint Status
-            </button>
-          </li>
+          {!user ? (
+            <>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/raise-complaint" ? "active" : ""
+                  }`}
+                  onClick={handleRaiseComplaintClick}
+                >
+                  Raise Complaint
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/check-complaint-status" ? "active" : ""
+                  }`}
+                  onClick={handleCheckComplaintStatusClick}
+                >
+                  Check Complaint Status
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/add-user" ? "active" : ""
+                  }`}
+                  onClick={handleAddUserClick}
+                >
+                  Add User
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/manage-users" ? "active" : ""
+                  }`}
+                  onClick={handleManageUsersClick}
+                >
+                  Manage Users
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/all-complaints" ? "active" : ""
+                  }`}
+                  onClick={handleAllComplaintsClick}
+                >
+                  All Complaints
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </aside>
