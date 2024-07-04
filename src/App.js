@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -14,7 +14,36 @@ import AddUser from "./pages/AddUser";
 import ManageUsers from "./pages/ManageUsers";
 
 function App() {
-  const [user, setUser] = useState(null);
+  
+
+  const [user, setUser] = useState(() => {
+    // Retrieve user from localStorage if it exists
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  useEffect(() => {
+    // Save user to localStorage whenever it changes
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      // Log out the user on back button press
+      setUser(null);
+      localStorage.removeItem("user");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   return (
     <Router>
