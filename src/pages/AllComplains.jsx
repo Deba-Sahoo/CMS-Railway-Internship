@@ -1,61 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './AllComplains.css';
 
 const AllComplains = () => {
-  const [complains, setComplains] = useState([
-    {
-      complaintID: 1,
-      title: "Internet Connectivity Issue",
-      complaint: "Unable to access company website from office network. Lorem ipsum",
-      department: "IT",
-      website: "companywebsite.com",
-      module: "Network Services",
-      division: "Operations",
-      document: null,
-      status: "Resolved",
-      currentHolder: 2,
-      currentHolderUsername: "sarans",
-      transactions: [
-        {
-          transactionId: 1,
-          createdBy: 123456,
-          sentTo: 1,
-          createdByUsername: null,
-          sentToUsername: "admin",
-          timeAndDate: "2024-06-30T18:12:48.000Z",
-          remark: "Unable to access company website from office network.",
-          status: "pending"
-        },
-        {
-          transactionId: 2,
-          createdBy: 1,
-          sentTo: 2,
-          createdByUsername: "admin",
-          sentToUsername: "sarans",
-          timeAndDate: "2024-06-30T18:25:18.000Z",
-          remark: "Forwarding it to you. The issue of the web application.",
-          status: "In Progress"
-        },
-        {
-          transactionId: 3,
-          createdBy: 2,
-          sentTo: 1,
-          createdByUsername: "sarans",
-          sentToUsername: "admin",
-          timeAndDate: "2024-06-30T18:27:08.000Z",
-          remark: "Resolved.",
-          status: "Resolved"
-        }
-      ]
-    },
-    // Additional complaints...
-  ]);
-
+  const { userID } = useParams();
+  const [complains, setComplains] = useState([]);
   const [selectedComplain, setSelectedComplain] = useState(null);
   const [showTransactions, setShowTransactions] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedUser, setSelectedUser] = useState('');
   const [reply, setReply] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3003/getComplaintByUserId/${userID}`);
+        setComplains(response.data);
+      } catch (error) {
+        console.error('Error fetching complaints:', error);
+      }
+    };
+
+    fetchComplaints();
+  }, [userID]);
+
+  useEffect(() => {
+    if (selectedOption === 'forward') {
+      const fetchUsers = async () => {
+        try {
+          const response = await axios.get('http://localhost:3003/getLevel0and1');
+          setUsers(response.data);
+        } catch (error) {
+          console.error('Error fetching users:', error);
+        }
+      };
+
+      fetchUsers();
+    }
+  }, [selectedOption]);
 
   const handleViewDetails = (complain) => {
     setSelectedComplain(complain);
@@ -89,12 +73,40 @@ const AllComplains = () => {
     setReply(event.target.value);
   };
 
-  const handleSubmit = () => {
-    // Handle the submit action
-    console.log(`Selected option: ${selectedOption}`);
-    console.log(`Selected user: ${selectedUser}`);
-    console.log(`Reply: ${reply}`);
-    // Add your submission logic here
+  const handleSubmit = async () => {
+    if (selectedOption === 'forward' && selectedUser && reply) {
+      try {
+        const requestBody = {
+          remark: reply,
+          createdBy: userID,  // assuming userID is the ID of the user performing the action
+          sentTo: selectedUser,
+          complaintID: selectedComplain.complaintID,
+        };
+        const response = await axios.post('http://localhost:3003/forwardComplaint', requestBody);
+        console.log(response.data);
+        alert('Complaint forwarded successfully');
+        window.location.reload();  // Reload the page
+      } catch (error) {
+        console.error('Error forwarding complaint:', error);
+        // Handle error (e.g., show an error message)
+      }
+    } else if (selectedOption === 'resolve' && reply) {
+      try {
+        const requestBody = {
+          remark: reply,
+          createdBy: parseInt(userID),  // assuming userID is the ID of the user performing the action
+          sentTo: selectedComplain.currentHolder, // assuming current holder is the one resolving it
+          complaintID: selectedComplain.complaintID,
+        };
+        const response = await axios.post('http://localhost:3003/resolveComplaint', requestBody);
+        console.log(response.data);
+        alert('Complaint resolved successfully');
+        window.location.reload();  // Reload the page
+      } catch (error) {
+        console.error('Error resolving complaint:', error);
+        // Handle error (e.g., show an error message)
+      }
+    }
   };
 
   return (
@@ -139,7 +151,7 @@ const AllComplains = () => {
               <p><strong>Module:</strong> {selectedComplain.module}</p>
               <p><strong>Division:</strong> {selectedComplain.division}</p>
               {selectedComplain.document && (
-                <p><strong>Document:</strong> <a href={selectedComplain.document} target="_blank" rel="noopener noreferrer">View Document</a></p>
+                <p><strong>Document:</strong> <a href={`http://localhost:3003/uploads/${selectedComplain.document}`} target="_blank" rel="noopener noreferrer">View Document</a></p>
               )}
               <p><strong>Status:</strong> {selectedComplain.status}</p>
               <p><strong>Current Holder:</strong> {selectedComplain.currentHolderUsername}</p>
@@ -170,10 +182,9 @@ const AllComplains = () => {
                   <label>Select User:</label>
                   <select value={selectedUser} onChange={handleUserChange}>
                     <option value="">Select User</option>
-                    <option value="user1">User 1</option>
-                    <option value="user2">User 2</option>
-                    <option value="user3">User 3</option>
-                    {/* Add more users as needed */}
+                    {users.map((user) => (
+                      <option key={user.userID} value={user.userID}>{user.userName}</option>
+                    ))}
                   </select>
                   <label>Reply:</label>
                   <textarea
