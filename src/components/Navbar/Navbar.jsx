@@ -23,7 +23,7 @@ const Navbar = ({ user }) => {
   };
 
   const handleAllComplaintsClick = () => {
-    navigate("/landing");
+    navigate("/all-complains");
   };
 
   return (

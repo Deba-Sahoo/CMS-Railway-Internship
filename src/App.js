@@ -7,7 +7,7 @@ import RaiseComplaint from "./pages/RaiseComplaint/RaiseComplaint";
 import HomePage from "./pages/HomePage/HomePage";
 import CheckStatus from "./pages/CheckStatus/CheckStatus";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import LandingPage from "./pages/LandingPage";
+import AllComplains from "./pages/AllComplaints/AllComplains";
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import AddUser from "./pages/AddUser/AddUser";
@@ -28,7 +28,7 @@ function App() {
           <Route path="/add-user" element={<AddUser user={user} />} />
           <Route path="/manage-users" element={<ManageUsers user={user} />} />
           <Route path="/login" element={user === null ? <LoginPage setUser={setUser} user={user} /> : <HomePage/>} />
-          <Route path="/landing" element={<LandingPage user={user} />} />
+          <Route path="/all-complains" element={<AllComplains />} />
           <Route path="/profile" element={<Profile user={user} />} />
           <Route path="/change-password" element={<ChangePassword user={user} />} />
         </Routes>

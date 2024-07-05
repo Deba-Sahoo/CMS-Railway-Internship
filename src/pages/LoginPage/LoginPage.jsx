@@ -8,7 +8,7 @@ const LoginPage = ({ setUser, user }) => {
   const navigateToLanding = (event) => {
     event.preventDefault();
     setUser(!user);
-    navigate("/landing");
+    navigate("/all-complains");
   };
 
   return (
