@@ -34,29 +34,33 @@ const ManageUsers = () => {
   };
 
   return (
-    <div>
+    <div className="manage-users-container">
       <h2>Manage Users</h2>
-      <div>
+      <div className="manage-section">
         <h3>Activate User</h3>
-        <input
-          type="text"
-          value={activateUser}
-          onChange={handleActivateChange}
-          placeholder="Enter username or ID"
-          required
-        />
-        <button onClick={handleActivateUser}>Activate</button>
+        <form onSubmit={(e) => { e.preventDefault(); handleActivateUser(); }}>
+          <input
+            type="text"
+            value={activateUser}
+            onChange={handleActivateChange}
+            placeholder="Enter username or ID"
+            required
+          />
+          <button type="submit" className="manage-button">Activate</button>
+        </form>
       </div>
-      <div>
+      <div className="manage-section">
         <h3>Deactivate User</h3>
-        <input
-          type="text"
-          value={deactivateUser}
-          onChange={handleDeactivateChange}
-          placeholder="Enter username or ID"
-          required
-        />
-        <button onClick={handleDeactivateUser}>Deactivate</button>
+        <form onSubmit={(e) => { e.preventDefault(); handleDeactivateUser(); }}>
+          <input
+            type="text"
+            value={deactivateUser}
+            onChange={handleDeactivateChange}
+            placeholder="Enter username or ID"
+            required
+          />
+          <button type="submit" className="manage-button">Deactivate</button>
+        </form>
       </div>
     </div>
   );

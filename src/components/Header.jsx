@@ -41,16 +41,6 @@ const Header = ({ user, setUser }) => {
               <div className="dropdown">
                 <ul>
                   <li>
-                    <button onClick={() => navigate("/profile")}>
-                      Profile
-                    </button>
-                  </li>
-                  <li>
-                    <button onClick={() => navigate("/change-password")}>
-                      Change Password
-                    </button>
-                  </li>
-                  <li>
                     <button onClick={handleLogout}>Logout</button>
                   </li>
                 </ul>

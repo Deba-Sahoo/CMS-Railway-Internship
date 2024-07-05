@@ -15,15 +15,15 @@ const Navbar = ({ user }) => {
   };
 
   const handleAddUserClick = () => {
-    navigate("/add-user");
+    navigate(`/add-user/${user.userId}`);
   };
 
   const handleManageUsersClick = () => {
-    navigate("/manage-users");
+    navigate(`/manage-users/${user.userId}`);
   };
 
   const handleAllComplaintsClick = () => {
-    navigate("/landing");
+    navigate(`/all-complains/${user.userId}`);
   };
 
   return (
@@ -58,7 +58,7 @@ const Navbar = ({ user }) => {
             <li>
                 <button
                   className={`button nav-button ${
-                    location.pathname === "/landing" ? "active" : ""
+                    location.pathname === "/all-complains/:userID" ? "active" : ""
                   }`}
                   onClick={handleAllComplaintsClick}
                 >

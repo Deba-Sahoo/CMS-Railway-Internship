@@ -19,13 +19,12 @@ const LoginPage = ({setUser,user}) => {
         password: password,
       });
       const { userId } = response.data;
-      setUser(userName);
-      navigate(`/landing/${userId}`);
+      setUser({ userName, userId });
+      navigate(`/all-complains/${userId}`);
     } catch (error) {
       setError("Invalid username or password.");
     }
   };
-
 
   return (
     <div className="login-container">
