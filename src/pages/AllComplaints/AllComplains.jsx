@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import './AllComplains.css';
+import React, { useState } from "react";
+import "./AllComplains.css";
 
 const AllComplains = () => {
   const [complains, setComplains] = useState([
     {
       complaintID: 1,
       title: "Internet Connectivity Issue",
-      complaint: "Unable to access company website from office network. Lorem ipsum",
+      complaint:
+        "Unable to access company website from office network. Lorem ipsum",
       department: "IT",
       website: "companywebsite.com",
       module: "Network Services",
@@ -24,7 +25,7 @@ const AllComplains = () => {
           sentToUsername: "admin",
           timeAndDate: "2024-06-30T18:12:48.000Z",
           remark: "Unable to access company website from office network.",
-          status: "pending"
+          status: "pending",
         },
         {
           transactionId: 2,
@@ -34,7 +35,7 @@ const AllComplains = () => {
           sentToUsername: "sarans",
           timeAndDate: "2024-06-30T18:25:18.000Z",
           remark: "Forwarding it to you. The issue of the web application.",
-          status: "In Progress"
+          status: "In Progress",
         },
         {
           transactionId: 3,
@@ -44,24 +45,24 @@ const AllComplains = () => {
           sentToUsername: "admin",
           timeAndDate: "2024-06-30T18:27:08.000Z",
           remark: "Resolved.",
-          status: "Resolved"
-        }
-      ]
+          status: "Resolved",
+        },
+      ],
     },
     // Additional complaints...
   ]);
 
   const [selectedComplain, setSelectedComplain] = useState(null);
   const [showTransactions, setShowTransactions] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
-  const [selectedUser, setSelectedUser] = useState('');
-  const [reply, setReply] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedUser, setSelectedUser] = useState("");
+  const [reply, setReply] = useState("");
 
   const handleViewDetails = (complain) => {
     setSelectedComplain(complain);
-    setSelectedOption('');
-    setSelectedUser('');
-    setReply('');
+    setSelectedOption("");
+    setSelectedUser("");
+    setReply("");
   };
 
   const handleCloseDetails = () => {
@@ -100,7 +101,7 @@ const AllComplains = () => {
   return (
     <div className="all-complains-container">
       <h2>All Complains</h2>
-      <div className={`content ${selectedComplain ? 'split-view' : ''}`}>
+      <div className={`content ${selectedComplain ? "split-view" : ""}`}>
         <div className="table-container">
           <table>
             <thead>
@@ -117,10 +118,14 @@ const AllComplains = () => {
                 <tr key={complain.complaintID}>
                   <td>{complain.complaintID}</td>
                   <td>{complain.title}</td>
-                  <td className="truncate-text" title={complain.complaint}>{complain.complaint}</td>
+                  <td className="truncate-text" title={complain.complaint}>
+                    {complain.complaint}
+                  </td>
                   <td>{complain.status}</td>
                   <td>
-                    <button onClick={() => handleViewDetails(complain)}>View Details</button>
+                    <button onClick={() => handleViewDetails(complain)}>
+                      View Details
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -131,26 +136,63 @@ const AllComplains = () => {
           <div className="details-container">
             <div className="details-content">
               <h3>Complain Details</h3>
-              <p><strong>ID:</strong> {selectedComplain.complaintID}</p>
-              <p><strong>Title:</strong> {selectedComplain.title}</p>
-              <p><strong>Complain:</strong> {selectedComplain.complaint}</p>
-              <p><strong>Department:</strong> {selectedComplain.department}</p>
-              <p><strong>Website:</strong> {selectedComplain.website}</p>
-              <p><strong>Module:</strong> {selectedComplain.module}</p>
-              <p><strong>Division:</strong> {selectedComplain.division}</p>
+              <p>
+                <strong>ID:</strong> {selectedComplain.complaintID}
+              </p>
+              <p>
+                <strong>Title:</strong> {selectedComplain.title}
+              </p>
+              <p>
+                <strong>Complain:</strong> {selectedComplain.complaint}
+              </p>
+              <p>
+                <strong>Department:</strong> {selectedComplain.department}
+              </p>
+              <p>
+                <strong>Website:</strong> {selectedComplain.website}
+              </p>
+              <p>
+                <strong>Module:</strong> {selectedComplain.module}
+              </p>
+              <p>
+                <strong>Division:</strong> {selectedComplain.division}
+              </p>
               {selectedComplain.document && (
-                <p><strong>Document:</strong> <a href={selectedComplain.document} target="_blank" rel="noopener noreferrer">View Document</a></p>
+                <p>
+                  <strong>Document:</strong>{" "}
+                  <a
+                    href={selectedComplain.document}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Document
+                  </a>
+                </p>
               )}
-              <p><strong>Status:</strong> {selectedComplain.status}</p>
-              <p><strong>Current Holder:</strong> {selectedComplain.currentHolderUsername}</p>
-              <button className="close-button" onClick={handleCloseDetails}>Close</button>
-              <button className="transactions-button" onClick={handleShowTransactions}>Transaction Details</button>
+              <p>
+                <strong>Status:</strong> {selectedComplain.status}
+              </p>
+              <p>
+                <strong>Current Holder:</strong>{" "}
+                {selectedComplain.currentHolderUsername}
+              </p>
+              <div className="closeandtransaction">
+                <button
+                  className="transactions-button"
+                  onClick={handleShowTransactions}
+                >
+                  Transaction Details
+                </button>
+                <button className="close-button" onClick={handleCloseDetails}>
+                  Close
+                </button>
+              </div>
               <div className="radio-buttons">
                 <label>
                   <input
                     type="radio"
                     value="forward"
-                    checked={selectedOption === 'forward'}
+                    checked={selectedOption === "forward"}
                     onChange={handleOptionChange}
                   />
                   Forward
@@ -159,13 +201,13 @@ const AllComplains = () => {
                   <input
                     type="radio"
                     value="resolve"
-                    checked={selectedOption === 'resolve'}
+                    checked={selectedOption === "resolve"}
                     onChange={handleOptionChange}
                   />
                   Resolve
                 </label>
               </div>
-              {selectedOption === 'forward' && (
+              {selectedOption === "forward" && (
                 <div className="forward-section">
                   <label>Select User:</label>
                   <select value={selectedUser} onChange={handleUserChange}>
@@ -181,10 +223,12 @@ const AllComplains = () => {
                     onChange={handleReplyChange}
                     placeholder="Enter your reply here..."
                   ></textarea>
-                  <button className="submit-button" onClick={handleSubmit}>Submit</button>
+                  <button className="submit-button" onClick={handleSubmit}>
+                    Submit
+                  </button>
                 </div>
               )}
-              {selectedOption === 'resolve' && (
+              {selectedOption === "resolve" && (
                 <div className="resolve-section">
                   <label>Remark:</label>
                   <textarea
@@ -192,7 +236,9 @@ const AllComplains = () => {
                     onChange={handleReplyChange}
                     placeholder="Enter your remark here..."
                   ></textarea>
-                  <button className="submit-button" onClick={handleSubmit}>Submit</button>
+                  <button className="submit-button" onClick={handleSubmit}>
+                    Submit
+                  </button>
                 </div>
               )}
             </div>
@@ -204,18 +250,34 @@ const AllComplains = () => {
           <div className="modal-content">
             <h3>Transaction Details</h3>
             <ul>
-              {selectedComplain.transactions.map(transaction => (
+              {selectedComplain.transactions.map((transaction) => (
                 <li key={transaction.transactionId}>
-                  <p><strong>Transaction ID:</strong> {transaction.transactionId}</p>
-                  <p><strong>Created By:</strong> {transaction.createdByUsername || transaction.createdBy}</p>
-                  <p><strong>Sent To:</strong> {transaction.sentToUsername}</p>
-                  <p><strong>Time and Date:</strong> {new Date(transaction.timeAndDate).toLocaleString()}</p>
-                  <p><strong>Remark:</strong> {transaction.remark}</p>
-                  <p><strong>Status:</strong> {transaction.status}</p>
+                  <p>
+                    <strong>Transaction ID:</strong> {transaction.transactionId}
+                  </p>
+                  <p>
+                    <strong>Created By:</strong>{" "}
+                    {transaction.createdByUsername || transaction.createdBy}
+                  </p>
+                  <p>
+                    <strong>Sent To:</strong> {transaction.sentToUsername}
+                  </p>
+                  <p>
+                    <strong>Time and Date:</strong>{" "}
+                    {new Date(transaction.timeAndDate).toLocaleString()}
+                  </p>
+                  <p>
+                    <strong>Remark:</strong> {transaction.remark}
+                  </p>
+                  <p>
+                    <strong>Status:</strong> {transaction.status}
+                  </p>
                 </li>
               ))}
             </ul>
-            <button className="close-button" onClick={handleCloseTransactions}>Close</button>
+            <button className="close-button" onClick={handleCloseTransactions}>
+              Close
+            </button>
           </div>
         </div>
       )}

@@ -61,6 +61,8 @@ button.login-button {
   
   .dropdown ul li button {
     background: none;
+    color: black;
+    font-weight: bold;
     border: none;
     width: 100%;
     text-align: left;
@@ -68,7 +70,4 @@ button.login-button {
     cursor: pointer;
   }
   
-  .dropdown ul li button:hover {
-    background-color: #f1f1f1;
-  }
   
