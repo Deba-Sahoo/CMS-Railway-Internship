@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AllComplains.css';
 
-const AllComplains = ({user}) => {
+const AllComplains = ({ user }) => {
   const { userID } = useParams();
   const [complains, setComplains] = useState([]);
   const [selectedComplain, setSelectedComplain] = useState(null);
@@ -16,7 +16,7 @@ const AllComplains = ({user}) => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get(`http://localhost:3003/getComplaintsByCurrentHolder/${userID}`);
+        const response = await axios.get(`http://localhost:3003/getComplaintByUserId/${userID}`);
         setComplains(response.data);
       } catch (error) {
         console.error('Error fetching complaints:', error);
@@ -31,7 +31,7 @@ const AllComplains = ({user}) => {
       const fetchUsers = async () => {
         try {
           const response = await axios.get('http://localhost:3003/getLevel0and1');
-          setUsers(response.data);
+          setUsers(response.data.filter(u => u.userID !== parseInt(userID))); // Filter out the logged-in user
         } catch (error) {
           console.error('Error fetching users:', error);
         }
@@ -39,7 +39,7 @@ const AllComplains = ({user}) => {
 
       fetchUsers();
     }
-  }, [selectedOption]);
+  }, [selectedOption, userID]);
 
   const handleViewDetails = (complain) => {
     setSelectedComplain(complain);
@@ -183,8 +183,8 @@ const AllComplains = ({user}) => {
                   <label>Select User:</label>
                   <select value={selectedUser} onChange={handleUserChange}>
                     <option value="">Select User</option>
-                    {users.map((user) => (
-                      <option key={user.userID} value={user.userID}>{user.userName}</option>
+                    {users.map((u) => (
+                      <option key={u.userID} value={u.userID}>{u.userName}</option>
                     ))}
                   </select>
                   <label>Reply:</label>
@@ -216,7 +216,7 @@ const AllComplains = ({user}) => {
           <div className="modal-content">
             <h3>Transaction Details</h3>
             <ul>
-              {selectedComplain.transactions.map(transaction => (
+              {selectedComplain.transactions.map((transaction) => (
                 <li key={transaction.transactionId}>
                   <p><strong>Transaction ID:</strong> {transaction.transactionId}</p>
                   <p><strong>Created By:</strong> {transaction.createdByUsername || transaction.createdBy}</p>
