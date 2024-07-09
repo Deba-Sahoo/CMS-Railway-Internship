@@ -34,7 +34,6 @@ const Navbar = ({ user }) => {
     navigate(`/resolve-complaints/${user.userId}`);
   };
 
-
   return (
     <aside className="sidebar">
       <nav>
@@ -64,7 +63,7 @@ const Navbar = ({ user }) => {
             </>
           ) : (
             <>
-            <li>
+              <li>
                 <button
                   className={`button nav-button ${
                     location.pathname === "/all-complains/:userID" ? "active" : ""
@@ -94,26 +93,30 @@ const Navbar = ({ user }) => {
                   Resolved Complaints
                 </button>
               </li>
-              <li>
-                <button
-                  className={`button nav-button ${
-                    location.pathname === "/add-user" ? "active" : ""
-                  }`}
-                  onClick={handleAddUserClick}
-                >
-                  Add User
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`button nav-button ${
-                    location.pathname === "/manage-users" ? "active" : ""
-                  }`}
-                  onClick={handleManageUsersClick}
-                >
-                  Manage Users
-                </button>
-              </li>
+              {user.userLevel === 1 && (
+                <>
+                  <li>
+                    <button
+                      className={`button nav-button ${
+                        location.pathname === "/add-user/:userID" ? "active" : ""
+                      }`}
+                      onClick={handleAddUserClick}
+                    >
+                      Add User
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className={`button nav-button ${
+                        location.pathname === "/manage-users/:userID" ? "active" : ""
+                      }`}
+                      onClick={handleManageUsersClick}
+                    >
+                      Manage Users
+                    </button>
+                  </li>
+                </>
+              )}
             </>
           )}
         </ul>

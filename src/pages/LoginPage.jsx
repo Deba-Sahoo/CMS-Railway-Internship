@@ -36,8 +36,9 @@ const LoginPage = ({setUser,user}) => {
       if(result.data.loginStatus)
       {
         localStorage.setItem("valid", true);
-        const { userId } = result.data;
-            setUser({ userName, userId });
+        // console.log(result.data)
+        const { userId, userLevel } = result.data;
+            setUser({ userName, userId, userLevel });
             navigate(`/all-complains/${userId}`);
       }
       else

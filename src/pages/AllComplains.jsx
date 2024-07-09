@@ -4,6 +4,7 @@ import axios from 'axios';
 import './AllComplains.css';
 
 const AllComplains = ({ user }) => {
+  console.log(user);
   const { userID } = useParams();
   const [complains, setComplains] = useState([]);
   const [selectedComplain, setSelectedComplain] = useState(null);
@@ -16,7 +17,7 @@ const AllComplains = ({ user }) => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get(`http://localhost:3003/getComplaintByUserId/${userID}`);
+        const response = await axios.get(`http://localhost:3003/getComplaintsByCurrentHolder/${userID}`);
         setComplains(response.data);
       } catch (error) {
         console.error('Error fetching complaints:', error);
