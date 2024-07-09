@@ -12,6 +12,7 @@ const Header = ({ user, setUser }) => {
       setDropdown(!dropdown);
     }
   };
+
   const handleLogout = () => {
     setUser(null);
     navigate("/");
@@ -22,7 +23,7 @@ const Header = ({ user, setUser }) => {
     <header className="header">
       <div className="container-flex">
         <div className="logo">
-          <span className="logo-span">LOGO</span>
+          <img src="/logo.png" alt="Logo" className="logo-img" />
         </div>
         {user === null && (
           <button

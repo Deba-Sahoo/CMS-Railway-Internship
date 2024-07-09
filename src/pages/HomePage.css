@@ -1,4 +1,11 @@
 .homepage-content{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
+
+.homepage-logo {
+    margin: auto;
+    height: auto;
+    width: 150px;
+  }

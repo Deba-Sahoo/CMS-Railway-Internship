@@ -8,7 +8,6 @@ function CheckStatus() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
 
-  // fetch the complaint by Id or pf no ---------------------------------------------
   const checkStatus = async () => {
     try {
       let response;
@@ -62,8 +61,14 @@ function CheckStatus() {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Created By</th>
+                <th>PF No</th>
                 <th>Title</th>
-                <th>Description</th>
+                <th>Complaint</th>
+                <th>Department</th>
+                <th>Website</th>
+                <th>Module</th>
+                <th>Division</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -72,14 +77,20 @@ function CheckStatus() {
                 results.map((result) => (
                   <tr key={result.complaintID}>
                     <td>{result.complaintID}</td>
+                    <td>{result.createdByName}</td>
+                    <td>{result.pfNo}</td>
                     <td>{result.title}</td>
                     <td>{result.complaint}</td>
+                    <td>{result.department}</td>
+                    <td>{result.website}</td>
+                    <td>{result.module}</td>
+                    <td>{result.division}</td>
                     <td>{result.status}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">No complaints {error && <p className="error">{error}</p>}</td>
+                  <td colSpan="12">No complaints {error && <p className="error">{error}</p>}</td>
                 </tr>
               )}
             </tbody>

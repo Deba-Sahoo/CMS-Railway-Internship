@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./ManageUsers.css";
 
 const ManageUsers = () => {
   const [activateUser, setActivateUser] = useState('');
@@ -21,6 +22,7 @@ const ManageUsers = () => {
       console.log(response.data); // Log success message or handle response data
     } catch (error) {
       console.error('Error deactivating user:', error);
+      alert("Invalid User");
       // Handle error, e.g., show error message to user
     }
   };
@@ -43,7 +45,7 @@ const ManageUsers = () => {
             type="text"
             value={activateUser}
             onChange={handleActivateChange}
-            placeholder="Enter username or ID"
+            placeholder="Enter userId"
             required
           />
           <button type="submit" className="manage-button">Activate</button>
@@ -56,7 +58,7 @@ const ManageUsers = () => {
             type="text"
             value={deactivateUser}
             onChange={handleDeactivateChange}
-            placeholder="Enter username or ID"
+            placeholder="Enter userId"
             required
           />
           <button type="submit" className="manage-button">Deactivate</button>

@@ -34,11 +34,6 @@ button.login-button {
     right: 20px;
 }
 
-
-
-
-
-
 .dropdown {
     position: fixed;
     top: 45px;
@@ -62,13 +57,20 @@ button.login-button {
   .dropdown ul li button {
     background: none;
     border: none;
+    color: #A05B56;
+    font-weight: bold;
     width: 100%;
     text-align: left;
     padding: 8px 16px;
     cursor: pointer;
   }
   
-  .dropdown ul li button:hover {
-    background-color: #f1f1f1;
+  .dropdown ul li button:hover {    
+    background-color: #A05B56;
+    color: #f1f1f1;
   }
   
+  .logo-img {
+    height: 30px; 
+    width: auto;
+  }
