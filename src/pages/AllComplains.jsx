@@ -16,7 +16,7 @@ const AllComplains = ({user}) => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get(`http://localhost:3003/getComplaintByUserId/${userID}`);
+        const response = await axios.get(`http://localhost:3003/getComplaintsByCurrentHolder/${userID}`);
         setComplains(response.data);
       } catch (error) {
         console.error('Error fetching complaints:', error);

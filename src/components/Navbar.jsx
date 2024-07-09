@@ -26,6 +26,15 @@ const Navbar = ({ user }) => {
     navigate(`/all-complains/${user.userId}`);
   };
 
+  const handleSentComplaintsClick = () => {
+    navigate(`/sent-complaints/${user.userId}`);
+  };
+
+  const handleResolvedComplaintsClick = () => {
+    navigate(`/resolve-complaints/${user.userId}`);
+  };
+
+
   return (
     <aside className="sidebar">
       <nav>
@@ -63,6 +72,26 @@ const Navbar = ({ user }) => {
                   onClick={handleAllComplaintsClick}
                 >
                   All Complaints
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/sent-complaints/:userID" ? "active" : ""
+                  }`}
+                  onClick={handleSentComplaintsClick}
+                >
+                  Sent Complaints
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/resolve-complaints/:userID" ? "active" : ""
+                  }`}
+                  onClick={handleResolvedComplaintsClick}
+                >
+                  Resolved Complaints
                 </button>
               </li>
               <li>

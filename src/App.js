@@ -12,6 +12,8 @@ import ChangePassword from "./pages/ChangePassword";
 import AddUser from "./pages/AddUser";
 import ManageUsers from "./pages/ManageUsers";
 import AllComplains from "./pages/AllComplains";
+import SentComplaints from "./pages/SentComplaints";
+import ResolvedComplaints from "./pages/ResolvedComplaints";
 import withAuth from "./pages/withAuth";
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
           <Route path="/add-user/:userID" element={withAuth(<AddUser user={user} />)} />
           <Route path="/manage-users/:userID" element={withAuth(<ManageUsers user={user} />)} />
           <Route path="/all-complains/:userID" element={withAuth(<AllComplains user={user} />)} />
+          <Route path="/sent-complaints/:userID" element={withAuth(<SentComplaints user={user} />)} />
+          <Route path="/resolve-complaints/:userID" element={withAuth(<ResolvedComplaints user={user} />)} />
           <Route path="/profile" element={withAuth(<Profile user={user} />)} />
           <Route path="/change-password" element={withAuth(<ChangePassword user={user} />)} />
 
