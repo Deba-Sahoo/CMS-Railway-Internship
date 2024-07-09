@@ -14,6 +14,7 @@ const Header = ({ user, setUser }) => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("valid");
     setUser(null);
     navigate("/");
     setDropdown(false);

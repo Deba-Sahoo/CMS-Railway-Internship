@@ -12,19 +12,41 @@ const LoginPage = ({setUser,user}) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post("http://localhost:3003/login", {
-        userName: userName,
-        password: password,
-      });
-      const { userId } = response.data;
-      setUser({ userName, userId });
-      navigate(`/all-complains/${userId}`);
-    } catch (error) {
-      setError("Invalid username or password.");
-    }
-  };
+
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await axios.post("http://localhost:3003/login", {
+  //       userName: userName,
+  //       password: password,
+  //     });
+  //     const { userId } = response.data;
+  //     setUser({ userName, userId });
+  //     navigate(`/all-complains/${userId}`);
+  //   } catch (error) {
+  //     setError("Invalid username or password.");
+  //   }
+  // };
+
+  const handleLogin = (event) =>{
+    event.preventDefault();
+    axios.post("http://localhost:3003/login", {
+      userName :userName,
+      password: password
+    }).then(result => {
+      if(result.data.loginStatus)
+      {
+        localStorage.setItem("valid", true);
+        const { userId } = result.data;
+            setUser({ userName, userId });
+            navigate(`/all-complains/${userId}`);
+      }
+      else
+      {
+        setError(result.data.Error)
+      }
+    })
+    .catch(err => console.log(err))
+  }
 
   return (
     <div className="login-container">
