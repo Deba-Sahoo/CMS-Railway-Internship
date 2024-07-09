@@ -16,6 +16,11 @@ const RaiseComplaint = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate employee number
+    if (employeeNo.length !== 11) {
+      alert("Please Enter a valid employee number");
+      return;
+    }
     const formData = new FormData();
     formData.append("createdByName", employeeName);
     formData.append("pfNo", employeeNo);
@@ -37,7 +42,7 @@ const RaiseComplaint = () => {
           },
         }
       );
-      alert(response.data.message); // Assuming your backend sends back a message
+      alert(response.data.message);
     } catch (error) {
       console.error("Error submitting complaint:", error);
       alert("Failed to submit complaint. Please try again later.");

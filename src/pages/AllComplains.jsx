@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AllComplains.css';
 
-const AllComplains = () => {
+const AllComplains = ({user}) => {
   const { userID } = useParams();
   const [complains, setComplains] = useState([]);
   const [selectedComplain, setSelectedComplain] = useState(null);
@@ -111,7 +111,8 @@ const AllComplains = () => {
 
   return (
     <div className="all-complains-container">
-      <h2>All Complains</h2>
+      <h2>Welcome, {user.userName}!</h2>
+      <h2>All Complains</h2>  
       <div className={`content ${selectedComplain ? 'split-view' : ''}`}>
         <div className="table-container">
           <table>
