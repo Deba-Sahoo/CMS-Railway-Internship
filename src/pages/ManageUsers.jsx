@@ -65,7 +65,7 @@ const ManageUsers = () => {
             <p>Email: {userData.email}</p>
             <p>Contact: {userData.contact}</p>
             <p>User Level: {userData.userLevel}</p>
-            <p>Active Status: {userData.isActiveUser === 'Y' ? 'Active' : 'Inactive'}</p>
+            <p>Status: {userData.isActiveUser === 'Y' ? 'Active' : 'Inactive'}</p>
             <button
               className="manage-button"
               onClick={handleToggleActivation}
