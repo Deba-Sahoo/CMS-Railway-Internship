@@ -1,52 +1,43 @@
-// Imports ---------------------------------------------------------------
-import React, {useState}  from "react";
+import React, { useState } from "react";
 import './LoginPage.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const LoginPage = ({setUser,user}) => {
+const LoginPage = ({ setUser }) => {
   const navigate = useNavigate();
 
-  // creating a hook state for the input data ---------------------------
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-
-  // const handleLogin = async () => {
-  //   try {
-  //     const response = await axios.post("http://localhost:3003/login", {
-  //       userName: userName,
-  //       password: password,
-  //     });
-  //     const { userId } = response.data;
-  //     setUser({ userName, userId });
-  //     navigate(`/all-complains/${userId}`);
-  //   } catch (error) {
-  //     setError("Invalid username or password.");
-  //   }
-  // };
-
-  const handleLogin = (event) =>{
+  const handleLogin = (event) => {
     event.preventDefault();
     axios.post("http://localhost:3003/login", {
-      userName :userName,
+      email: email,
       password: password
-    }).then(result => {
-      if(result.data.loginStatus)
-      {
+    })
+    .then(result => {
+      if (result.data.loginStatus) {
         localStorage.setItem("valid", true);
-        // console.log(result.data)
-        const { userId, userLevel } = result.data;
-            setUser({ userName, userId, userLevel });
-            navigate(`/all-complains/${userId}`);
-      }
-      else
-      {
-        setError(result.data.Error)
+        const { userID, userLevel, userName } = result.data;
+        setUser({ userName, userID, userLevel });
+        console.log(userID)
+        navigate(`/all-complains/${userID}`);
+      } else {
+        setError(result.data.message || "Wrong credentials");
+        alert(result.data.message || "Wrong credentials");
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      let errorMessage = "";
+      if (err.response && err.response.status === 403) {
+        errorMessage = err.response.data.message || "User is deactivated";
+      } else {
+        errorMessage = err.response?.data?.message || "Wrong Credentials/User Not Found";
+      }
+      setError(errorMessage);
+      alert(errorMessage);
+    });
   }
 
   return (
@@ -54,8 +45,8 @@ const LoginPage = ({setUser,user}) => {
       <main className="login-main">
         <form className="login-form">
           <div className="input-group">
-            <label htmlFor="userName">Username</label>
-            <input type="text" id="userName" name="userName" onChange={(e) => setUserName(e.target.value)} />
+            <label htmlFor="email">Email</label>
+            <input type="text" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="input-group">
             <label htmlFor="password">Password</label>

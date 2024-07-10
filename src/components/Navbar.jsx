@@ -15,27 +15,27 @@ const Navbar = ({ user }) => {
   };
 
   const handleAddUserClick = () => {
-    navigate(`/add-user/${user.userId}`);
+    navigate(`/add-user/${user.userID}`);
   };
 
   const handleManageUsersClick = () => {
-    navigate(`/manage-users/${user.userId}`);
+    navigate(`/manage-users/${user.userID}`);
   };
 
   const handleAllComplaintsClick = () => {
-    navigate(`/all-complains/${user.userId}`);
+    navigate(`/all-complains/${user.userID}`);
   };
 
   const handleSentComplaintsClick = () => {
-    navigate(`/sent-complaints/${user.userId}`);
+    navigate(`/sent-complaints/${user.userID}`);
   };
 
   const handleResolvedComplaintsClick = () => {
-    navigate(`/resolve-complaints/${user.userId}`);
+    navigate(`/resolve-complaints/${user.userID}`);
   };
 
   const handleReportClick = () => {
-    navigate(`/report`);
+    navigate(`/report/${user.userID}`);
   };
 
   return (
@@ -97,7 +97,7 @@ const Navbar = ({ user }) => {
                   Resolved Complaints
                 </button>
               </li>
-              {user.userLevel === 1 && (
+              {user.userLevel === 0 && (
                 <>
                   <li>
                     <button
@@ -124,7 +124,7 @@ const Navbar = ({ user }) => {
               <li>
                 <button
                   className={`button nav-button ${
-                    location.pathname === "/report" ? "active" : ""
+                    location.pathname === `/report/${user.userID}` ? "active" : ""
                   }`}
                   onClick={handleReportClick}
                 >

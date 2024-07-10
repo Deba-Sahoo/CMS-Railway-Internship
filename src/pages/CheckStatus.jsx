@@ -84,7 +84,7 @@ const CheckStatus = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>PF No</th>
+                <th>Name</th>
                 <th>Title</th>
                 <th>Action</th>
               </tr>
