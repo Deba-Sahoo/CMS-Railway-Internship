@@ -34,6 +34,10 @@ const Navbar = ({ user }) => {
     navigate(`/resolve-complaints/${user.userId}`);
   };
 
+  const handleReportClick = () => {
+    navigate(`/report`);
+  };
+
   return (
     <aside className="sidebar">
       <nav>
@@ -66,7 +70,7 @@ const Navbar = ({ user }) => {
               <li>
                 <button
                   className={`button nav-button ${
-                    location.pathname === "/all-complains/:userID" ? "active" : ""
+                    location.pathname === `/all-complains/${user.userId}` ? "active" : ""
                   }`}
                   onClick={handleAllComplaintsClick}
                 >
@@ -76,7 +80,7 @@ const Navbar = ({ user }) => {
               <li>
                 <button
                   className={`button nav-button ${
-                    location.pathname === "/sent-complaints/:userID" ? "active" : ""
+                    location.pathname === `/sent-complaints/${user.userId}` ? "active" : ""
                   }`}
                   onClick={handleSentComplaintsClick}
                 >
@@ -86,7 +90,7 @@ const Navbar = ({ user }) => {
               <li>
                 <button
                   className={`button nav-button ${
-                    location.pathname === "/resolve-complaints/:userID" ? "active" : ""
+                    location.pathname === `/resolve-complaints/${user.userId}` ? "active" : ""
                   }`}
                   onClick={handleResolvedComplaintsClick}
                 >
@@ -98,7 +102,7 @@ const Navbar = ({ user }) => {
                   <li>
                     <button
                       className={`button nav-button ${
-                        location.pathname === "/add-user/:userID" ? "active" : ""
+                        location.pathname === `/add-user/${user.userId}` ? "active" : ""
                       }`}
                       onClick={handleAddUserClick}
                     >
@@ -108,7 +112,7 @@ const Navbar = ({ user }) => {
                   <li>
                     <button
                       className={`button nav-button ${
-                        location.pathname === "/manage-users/:userID" ? "active" : ""
+                        location.pathname === `/manage-users/${user.userId}` ? "active" : ""
                       }`}
                       onClick={handleManageUsersClick}
                     >
@@ -117,6 +121,16 @@ const Navbar = ({ user }) => {
                   </li>
                 </>
               )}
+              <li>
+                <button
+                  className={`button nav-button ${
+                    location.pathname === "/report" ? "active" : ""
+                  }`}
+                  onClick={handleReportClick}
+                >
+                  Reports
+                </button>
+              </li>
             </>
           )}
         </ul>
