@@ -1,0 +1,127 @@
+.report-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .report-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .report-card h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .filter-card {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filter-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .filter-options label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .filter-options .date-picker {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .card.submitted-card {
+    background: linear-gradient(135deg, #ff6384, #ff85a2);
+  }
+  
+  .card.resolved-card {
+    background: linear-gradient(135deg, #36a2eb, #63b7ff);
+  }
+  
+  .card.forwarded-card {
+    background: linear-gradient(135deg, #ffce56, #ffde80);
+  }
+  
+  .card.pending-card {
+    background: linear-gradient(135deg, #ff9f40, #ffb767);
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card:hover::before {
+    opacity: 1;
+  }
+  
+  .card h2 {
+    color: white;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    color: white;
+    font-size: 1.6em;
+    margin: 0;
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 300px;
+    margin: 0 auto;
+  }
+  
